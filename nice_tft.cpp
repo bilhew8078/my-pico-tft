@@ -2,6 +2,7 @@
 
 #include "TFT_eSPI.h"
 #include "pico/stdlib.h"
+#include "pico/stdio.h"
 
 TFT_eSPI tft = TFT_eSPI();
 
@@ -17,6 +18,10 @@ int rgb565(unsigned char r, unsigned char g, unsigned char b) {
 
 int main() {
   stdio_init_all();
+
+  gpio_init(5);
+  gpio_set_dir(5,GPIO_OUT);
+  gpio_put(5, 1);  // turn on backlight
   
   tft.init();
   tft.setRotation(1);
