@@ -17,11 +17,11 @@ int rgb565(unsigned char r, unsigned char g, unsigned char b) {
 
 int main() {
   stdio_init_all();
-
+  
   tft.init();
-  tft.setRotation(3);
-
-  tft.fillScreen(TFT_BLACK);
+  tft.setRotation(1);
+  tft.invertDisplay(true);
+  tft.fillScreen(TFT_BLUE);
 
   long previousMillis = 0;
   long lastFramerate = 0;
