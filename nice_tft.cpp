@@ -4,6 +4,8 @@
 #include "pico/stdlib.h"
 #include "pico/stdio.h"
 
+#include "FroggyLogo_uint16_BGR.h"
+
 TFT_eSPI tft = TFT_eSPI();
 
 int rgb565(unsigned char r, unsigned char g, unsigned char b) {
@@ -37,7 +39,13 @@ int main() {
   uint8_t dir = 1;
   tft.setTextSize(1);
 
+
+      // show the Froggy's Logo:
+
+  tft.pushImage(0, 0, 480, 320, FroggyLogo);
+
   while (1) {
+    /*
     unsigned long currentMillis = to_ms_since_boot(get_absolute_time());
 
     if (currentMillis - previousMillis >= 1000) // every second
@@ -64,14 +72,17 @@ int main() {
     tft.setCursor(50, 12);
     tft.print(fps);
 
-    // print some graphics
+
     // tft.drawCircle(0, 0, 10, shapeColor);
     // tft.drawRect(0, 0, 160, 80, shapeColor);
-    tft.fillRectHGradient(3, 22, 150, 55,
-                          rgb565(0xff - shapeColor, shapeColor, 0),
-                          rgb565(shapeColor, 0xff - shapeColor, 0));
+    //tft.fillRectHGradient(3, 22, 150, 55,
+                          //rgb565(0xff - shapeColor, shapeColor, 0),
+                          //rgb565(shapeColor, 0xff - shapeColor, 0));
     // tft.drawPixel(0, 0, TFT_RED);
     // tft.fillScreen(TFT_BLACK);
+    */
+    sleep_ms(5000);
+    printf("looping\n");
   }
 
   return 0;
