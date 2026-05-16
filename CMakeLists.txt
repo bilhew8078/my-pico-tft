@@ -21,29 +21,29 @@ set(PICO_BOARD pico2 CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(nice_tft C CXX ASM)
+project(logo_tft C CXX ASM)
 add_definitions(-DARDUINO_ARCH_RP2040)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -felide-constructors") # For String class optimization
 
 
 pico_sdk_init()
 
-add_executable(nice_tft nice_tft.cpp)
+add_executable(logo_tft logo_tft.cpp)
 
-pico_set_program_name(nice_tft "nice_tft")
-pico_set_program_version(nice_tft "0.1")
+pico_set_program_name(logo_tft "logo_tft")
+pico_set_program_version(logo_tft "0.1")
 
-pico_enable_stdio_uart(nice_tft 1)
-pico_enable_stdio_usb(nice_tft 1) # Needed for picotool auto upload
+pico_enable_stdio_uart(logo_tft 1)
+pico_enable_stdio_usb(logo_tft 1) # Needed for picotool auto upload
 
 
-target_include_directories(nice_tft PRIVATE
+target_include_directories(logo_tft PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
   ${PROJECT_SOURCE_DIR}/TFT_eSPI
 )
 
 
-target_link_libraries(nice_tft
+target_link_libraries(logo_tft
         pico_stdlib
         hardware_spi
         hardware_dma
@@ -54,5 +54,5 @@ target_link_libraries(nice_tft
 add_subdirectory(TFT_eSPI)
 
 
-pico_add_extra_outputs(nice_tft)
+pico_add_extra_outputs(logo_tft)
 string(APPEND CMAKE_EXE_LINKER_FLAGS "-Wl,--print-memory-usage")

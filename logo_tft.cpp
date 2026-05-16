@@ -1,8 +1,9 @@
 #include <stdio.h>
-
+#include <stdint.h>
 #include "TFT_eSPI.h"
 #include "pico/stdlib.h"
 #include "pico/stdio.h"
+
 
 #include "FroggyLogo_uint16_BGR.h"
 
@@ -23,7 +24,7 @@ int main() {
 
   gpio_init(5);
   gpio_set_dir(5,GPIO_OUT);
-  gpio_put(5, 1);  // turn on backlight
+  gpio_put(5, 0);  // turn off backlight
   
   tft.init();
   tft.setRotation(1);
@@ -42,7 +43,9 @@ int main() {
 
       // show the Froggy's Logo:
 
-  tft.pushImage(0, 0, 480, 320, FroggyLogo);
+  tft.pushImage(0, 0, 480, 320, splash);
+  sleep_ms(10);
+  gpio_put(5, 1);  // turn on backlight
 
   while (1) {
     /*
